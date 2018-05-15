@@ -1,0 +1,73 @@
+#%RAML 1.0
+version: v1
+baseUri: https://mocksvc.mulesoft.com/mocks/8edd7eff-2535-45fe-a5ca-549c94134ea4 # baseUri: https://mocksvc.mulesoft.com/mocks/0a7d8a5d-5638-48f2-a6f5-2636b20555c1 # 
+title: order-api-llopez
+
+/order:
+  get:
+    description: "Get orders"
+    queryParameters: 
+      status:
+        displayName: status
+        type: string
+        description: This is the status of the order
+        example: filled
+        required: false
+    responses: 
+      200:
+        body: 
+          application/json:
+            example: |
+              [
+                {
+                  "tx_number":1,
+                  "order_date":"2015-12-28 15:06:25",
+                  "action":"BUY",
+                  "status":"Filled",
+                  "symbol":"SPY",
+                  "quantity":50,
+                  "price":205.21,
+                  "net_amount":10260.5
+                },
+                {
+                  "tx_number":2,
+                  "order_date":"2015-11-14 15:06:25",
+                  "action":"BUY",
+                  "status":"Cancelled",
+                  "symbol":"SPY",
+                  "quantity":25,
+                  "price":10,
+                  "net_amount":250
+                }
+              ]
+            description: "Here is your order!"
+      204:
+        body: 
+          application/json: |
+            {"message":"no such order found"}
+      500:
+        body: 
+          application/json: |
+            {"message":"error retrieving the order"}
+  post:
+    description: "create new order"
+    body: 
+      application/json:
+        example: |
+          {
+            "action":"BUY",
+            "symbol":"SPY",
+            "quantity":50,
+            "price":205.21
+          }
+    responses: 
+      201:
+        description: "successully posted"
+        body: 
+          application/json:
+            example: |
+              {"message": "done!"}
+      500:
+        body: 
+          application/json: |
+            {"message":"error saving the order, retry"}

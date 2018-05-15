@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="order-json" format="json">
+      <types:example format="json" location="examples/order-json-1.json"/>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#5d8e6c11-cede-42e0-ac84-613f319135a1">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="order-json[]"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
