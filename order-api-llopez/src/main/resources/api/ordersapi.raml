@@ -40,7 +40,7 @@ title: order-api-llopez
                   "net_amount":250
                 }
               ]
-            description: "Here is your order!"
+            description: "Here are the matching status orders!"
       204:
         body: 
           application/json: |
@@ -50,7 +50,7 @@ title: order-api-llopez
           application/json: |
             {"message":"error retrieving the order"}
   post:
-    description: "create new order"
+    description: "Create new pending BUY/SELL order"
     body: 
       application/json:
         example: |
